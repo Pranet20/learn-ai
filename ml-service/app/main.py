@@ -10,10 +10,7 @@ class AssessmentData(BaseModel):
 
 @app.post("/recommend")
 def get_recommendations(data: AssessmentData):
-    # Logic to identify skill gaps (scores < 60)
     gaps = [topic for topic, score in data.scores.items() if score < 60]
-    
-    # Simple recommendation logic for now
     return {
         "user_id": data.user_id,
         "recommended_topics": gaps,
