@@ -4,8 +4,6 @@ router = APIRouter()
 
 @router.get("/recommendations")
 async def get_career_advice():
-    # In a production app, this would pull the user's latest radar scores
-    # and compare them against a database of job descriptions.
     return [
         {
             "role": "Data Scientist",
