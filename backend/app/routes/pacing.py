@@ -11,9 +11,6 @@ class SentimentPayload(BaseModel):
 @router.post("/analyze-and-adjust")
 def adjust_pacing(payload: SentimentPayload):
     adjustment = analyze_student_sentiment(payload.message)
-    
-    # In a production environment, this would update the 'current_difficulty' 
-    # field in the User's Active Course record in PostgreSQL.
     return {
         "status": "success",
         "adjustment": adjustment,
