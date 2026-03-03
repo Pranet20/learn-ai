@@ -2,7 +2,6 @@ def generate_path(skill_matrix: dict, courses: list):
     path = []
     for topic, score in skill_matrix.items():
         if score < 60:
-            # High priority for topics with gaps
             matching_course = next((c for c in courses if c.subject == topic), None)
             if matching_course:
                 path.append({
