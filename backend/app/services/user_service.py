@@ -8,8 +8,6 @@ def update_user_skill_matrix(db: Session, user_id: int, matrix: dict):
     if not profile:
         profile = Profile(user_id=user_id)
         db.add(profile)
-    
-    # Save the skill scores as a JSON string for the Radar Graph
     profile.subjects = json.dumps(matrix)
     db.commit()
     return profile
