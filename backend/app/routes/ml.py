@@ -25,8 +25,6 @@ def generate_study_insights(token: str = Depends(oauth2_scheme), db: Session = D
         my_stats = json.loads(current_user.subjects)
     except:
         my_stats = {"Mathematics": 0, "Physics": 0, "Chemistry": 0, "Literature": 0}
-
-    # 1. Identify Weaknesses & Strengths
     focus_areas = []
     strengths = []
     
@@ -37,8 +35,6 @@ def generate_study_insights(token: str = Depends(oauth2_scheme), db: Session = D
             strengths.append({"subject": subject, "score": score})
             
     focus_areas.sort(key=lambda x: x["gap"], reverse=True)
-
-    # 2. Gather Peer Pool (Real Users + Fallback Ghost Peers)
     other_users = db.query(User).filter(User.id != current_user.id).all()
     all_peers = []
     
@@ -47,16 +43,12 @@ def generate_study_insights(token: str = Depends(oauth2_scheme), db: Session = D
             all_peers.append({"name": u.name, "stats": json.loads(u.subjects)})
         except:
             pass
-
-    # Always include ghost peers so the UI never breaks during testing
     ghost_peers = [
         {"name": "Alex Developer", "stats": {"Mathematics": 90, "Physics": 85, "Chemistry": 95, "Literature": 60}},
         {"name": "Sarah Scientist", "stats": {"Mathematics": 70, "Physics": 95, "Chemistry": 50, "Literature": 80}},
         {"name": "David Math", "stats": {"Mathematics": 98, "Physics": 60, "Chemistry": 45, "Literature": 70}},
     ]
     all_peers.extend(ghost_peers)
-
-    # 3. Find the SINGLE BEST MATCH
     best_match = None
     highest_score = 0
     target_subject = focus_areas[0]["subject"] if focus_areas else "Mathematics"
