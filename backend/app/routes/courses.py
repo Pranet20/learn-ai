@@ -4,7 +4,6 @@ router = APIRouter()
 
 @router.get("/")
 async def get_all_courses():
-    # Mock database of available courses
     return [
         {
             "id": 1,
