@@ -1,5 +1,4 @@
 def analyze_student_sentiment(text: str):
-    # Keywords defined in PRD Module 6
     acceleration_triggers = ["easy", "slow", "bored", "boring", "know this"]
     deceleration_triggers = ["hard", "confused", "stuck", "fast", "difficult", "help"]
     
