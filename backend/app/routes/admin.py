@@ -4,7 +4,6 @@ router = APIRouter()
 
 @router.get("/stats")
 async def get_platform_stats():
-    # Mock aggregated data for the entire platform
     return {
         "total_students": 1248,
         "active_courses": 42,
@@ -20,7 +19,6 @@ async def get_platform_stats():
 
 @router.get("/students")
 async def get_recent_students():
-    # Mock data for the student tracking table
     return [
         {"id": 1, "name": "Alex Johnson", "email": "alex@learnai.com", "progress": 85, "status": "Active"},
         {"id": 2, "name": "Sarah Miller", "email": "sarah@learnai.com", "progress": 42, "status": "Active"},
