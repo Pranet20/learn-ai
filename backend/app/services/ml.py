@@ -3,8 +3,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sqlalchemy.orm import Session
 from app.models import User
 import json
-
-# Change the name back to find_best_peer_match so ai.py can find it
 def find_best_peer_match(db: Session, current_user_id: int):
     user = db.query(User).filter(User.id == current_user_id).first()
     others = db.query(User).filter(User.id != current_user_id).all()
