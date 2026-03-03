@@ -1,5 +1,4 @@
 def generate_career_roadmap(current_skills: dict, target_role: str):
-    # Industry Standards (Mock Data)
     role_requirements = {
         "AI Engineer": {"Math": 90, "Logic": 95, "Coding": 85, "Physics": 70},
         "Data Scientist": {"Math": 85, "Logic": 80, "Coding": 75, "Statistics": 90}
