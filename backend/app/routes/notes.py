@@ -12,7 +12,6 @@ class NoteCreate(BaseModel):
 
 @router.post("/save")
 async def save_note(data: NoteCreate, db: Session = Depends(get_db)):
-    # In a real app, you'd get the user_id from the JWT token
     new_note = Note(user_id=1, course_id=data.course_id, content=data.content)
     db.add(new_note)
     db.commit()
